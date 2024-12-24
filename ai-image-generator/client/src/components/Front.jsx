@@ -1,9 +1,10 @@
 import React, {useRef, useEffect} from "react";
 import { SlMagicWand } from "react-icons/sl";
 import {gsap} from 'gsap'
+import { TbSparkles } from "react-icons/tb";
 const Front = ({
   title = "Best text to image generator",
-  subtitle = "Turn text to image, in seconds",
+  // subtitle = "Turn text to image, in seconds",
 }) => {
   const textRef = useRef(null);
 
@@ -46,7 +47,8 @@ const Front = ({
     <span className='opacity-0'>,in seconds</span>
   </div>
 </div>
-
+<div className='text-s text-center flex  w-[600px] mt-[50px] gap-5 '><p>unleash you creativity AI.Turn your imagination into visual art in seconds just type and watch magic happwns</p></div>
+      <button className=" text-l bg-black hover:bg-gray-800 text-white font-bold w-[210px] h-[50px] flex items-center justify-center rounded-full mt-[50px]">Generate Image &nbsp;<TbSparkles/></button>
       </div>
     </div>
   );
