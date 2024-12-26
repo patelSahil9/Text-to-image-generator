@@ -7,6 +7,7 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Temp from "./components/Temp";
 import HowItWorks from "./components/HowItWorks";
 import HowItWorks2 from "./components/HowItWorks2";
+import Customerreview from "./components/Customerreview";
 export default function App() {
   return (
       <BrowserRouter>
@@ -18,6 +19,7 @@ export default function App() {
             </Routes>
             <HowItWorks/>
             <HowItWorks2/>
+            <Customerreview/>
       </BrowserRouter>
   );
 }
