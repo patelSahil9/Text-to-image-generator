@@ -1,55 +1,69 @@
-import React, {useRef, useEffect} from "react";
+import React, { useRef, useEffect } from "react";
 import { SlMagicWand } from "react-icons/sl";
-import {gsap} from 'gsap'
+import { FaMagic } from "react-icons/fa";
+import { LuDownload } from "react-icons/lu";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HowItWorks from "./HowItWorks";
+
 const Front = ({
   title = "Best text to image generator",
   subtitle = "Turn text to image, in seconds",
 }) => {
   const textRef = useRef(null);
 
+  gsap.registerPlugin(ScrollTrigger);
+
   useEffect(() => {
     const text = textRef.current;
-    const tl = gsap.timeline();
 
+    // Initial text animation
+    const tl = gsap.timeline();
     tl.to(text.children[0], {
       duration: 1.5,
       y: -10,
       ease: "elastic",
       stagger: 0.2,
-    });
-
-    tl.to(text.children[1].children[0], {
-      duration: 0.5,
-      opacity: 1,
-      stagger: 0.2,
-    });
-
-    tl.to(text.children[1].children[1], {
-      duration: 0.5,
-      opacity: 1,
-      stagger: 0.2,
-    });
+    })
+      .to(text.children[1].children[0], {
+        duration: 0.5,
+        opacity: 1,
+        stagger: 0.2,
+      })
+      .to(text.children[1].children[1], {
+        duration: 0.5,
+        opacity: 1,
+        stagger: 0.2,
+      });
   }, []);
 
   return (
-    <div className="bg-blue-500 text-white h-screen w-screen flex  justify-center">
-      <div className="flex flex-col items-center ">
-        <p className="text-s mt-[90px]  h-[30px] flex items-center justify-center rounded-full border-2 border-black p-2">
-          {title} <SlMagicWand fill="yellow" />
-        </p>
-        <div className='text-6xl font-bold flex flex-col items-center justify-center w-full mt-[50px] gap-5 ' style={{wordSpacing: '5px'}} ref={textRef}>
-  <div >
-    Turn text to 
-  </div>
-  <div className='mt-2'>
-    <span className='text-blue-600  opacity-0'>&nbsp;image</span>
-    <span className='opacity-0'>,in seconds</span>
-  </div>
-</div>
-
+    <>
+      <div className="text-black h-[700px] w-full flex justify-center">
+        <div className="w-full h-full flex flex-col items-center">
+          <p className="text-s mt-[90px] h-[30px] flex items-center justify-center rounded-full border-2 border-gray-400 p-2">
+            {title} <SlMagicWand fill="yellow" />
+          </p>
+          <div
+            className="l font-bold flex flex-col items-center justify-center w-full mt-[50px] gap-5"
+            style={{ wordSpacing: "5px" }}
+            ref={textRef}
+          >
+            <div className="text-6xl">Turn text to</div>
+            <div className="mt-2 text-6xl w-full text-center flex items-center justify-center">
+              <div className="opacity-0 text-blue-700">&nbsp;image</div>
+              <div className="opacity-0">, in seconds</div>
+            </div>
+          </div>
+          <button className="mt-6 px-6 py-3 bg-black text-white text-l rounded-full hover:scale-105 transition ease-in-out active:scale-95 duration-300">
+            Generate Images
+          </button>
+        </div>
       </div>
-    </div>
+      
+    </>
   );
 };
 
 export default Front;
+
