@@ -8,6 +8,7 @@ import Temp from "./components/Temp";
 import HowItWorks from "./components/HowItWorks";
 import HowItWorks2 from "./components/HowItWorks2";
 import Customerreview from "./components/Customerreview";
+import Footer from "./components/Footer";
 export default function App() {
   return (
       <BrowserRouter>
@@ -20,6 +21,7 @@ export default function App() {
             <HowItWorks/>
             <HowItWorks2/>
             <Customerreview/>
+            <Footer/>
       </BrowserRouter>
   );
 }

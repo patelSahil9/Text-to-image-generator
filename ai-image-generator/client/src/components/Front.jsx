@@ -16,7 +16,7 @@ const Front = ({
 
   useEffect(() => {
     const text = textRef.current;
-
+// const ig=igRef.current
     // Initial text animation
     const tl = gsap.timeline();
     tl.to(text.children[0], {
@@ -58,6 +58,15 @@ const Front = ({
           <button className="mt-6 px-6 py-3 bg-black text-white text-l rounded-full hover:scale-105 transition ease-in-out active:scale-95 duration-300">
             Generate Images
           </button>
+        <div className="w-[542px] h-[78px] mt-[100px] flex items-center justify-center gap-4" > 
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-[76px] h-full rounded-md " />
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-[76px] h-full rounded-md " />
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-[76px] h-full rounded-md " />
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-[76px] h-full rounded-md " />
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-[76px] h-full rounded-md " />
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-[76px] h-full rounded-md " />
+        </div>
+        <p>Images Generated from Imagify</p>
         </div>
       </div>
       
