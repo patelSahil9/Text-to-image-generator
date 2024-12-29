@@ -11,7 +11,7 @@ const Navbar = () => {
 
         <div className="flex space-x-6">
           <Link
-            to="/"
+            to="/pricing"
             className="w-[70px] h-[37px] flex justify-center items-center "
           >
             Pricing

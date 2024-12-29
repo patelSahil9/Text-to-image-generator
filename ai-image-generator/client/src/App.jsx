@@ -9,6 +9,9 @@ import HowItWorks from "./components/HowItWorks";
 import HowItWorks2 from "./components/HowItWorks2";
 import Customerreview from "./components/Customerreview";
 import Footer from "./components/Footer";
+import Generate from "./components/Generate";
+import Pricing from "./components/Pricing";
+
 export default function App() {
   return (
       <BrowserRouter>
@@ -17,6 +20,8 @@ export default function App() {
               <Route path="/" element={<Front />} />
               <Route path="/login" element={<Login />} />
               <Route path="/temp" element={<Temp />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/generate" element={<Generate />} />
             </Routes>
             <HowItWorks/>
             <HowItWorks2/>
