@@ -40,9 +40,9 @@ const Front = ({
 
   return (
     <>
-      <div className="text-black h-[700px] w-full flex justify-center">
+      <div className="text-black h-[100%] w-full flex justify-center">
         <div className="w-full h-full flex flex-col items-center">
-          <p className="text-s mt-[90px] h-[30px] flex items-center justify-center rounded-full border-2 border-gray-400 p-2">
+          <p className="text-s mt-[5%] h-[2%] flex items-center justify-center rounded-full border-2 border-gray-400 p-2">
             {title} <SlMagicWand fill="yellow" />
           </p>
           <div
