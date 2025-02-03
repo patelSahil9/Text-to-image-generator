@@ -22,12 +22,7 @@ const Navbar = () => {
           >
             Login
           </Link>
-          <Link
-            to="/temp"
-            className="w-[70px] h-[37px] flex justify-center items-center hover:text-gray-300 hover:bg-gray-500 rounded-full transition ease-in-out duration-300"
-          >
-            temp
-          </Link>
+          
         </div>
       </div>
     </nav>

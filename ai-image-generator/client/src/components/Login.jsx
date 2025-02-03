@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './login.css';
 
 
@@ -19,8 +20,13 @@ function Login() {
 
 	return (
 		<>
-		<div className='h-screen w-screen'>
-			<div className="container" id="container">
+		<div className='h-screen w-screen pt-16 top-0  fixed z-50 bg-white'>
+			{/* <Link to="/">
+				<div className='flex items-center'>
+					<button className="text-x font-bold py-2 px-4 rounded-full bg-gray-500 ml-10 hover:bg-gray-200 transition-all duration-300">&larr; Back</button>
+				</div>
+			</Link> */}
+			<div className="container mt-11" id="container">
 				<div className="form-container sign-up-container">
 					<form action="#">
 						<h1>Create Account</h1>
