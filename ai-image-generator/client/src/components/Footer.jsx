@@ -1,21 +1,21 @@
-import React from "react";
-import { CiFacebook,CiInstagram,CiTwitter } from "react-icons/ci";
+import React from 'react'
+import { assets } from '../assets/assets'
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <div className="h-[45px] w-full flex flex-row static bottom-0">
-      <div className="flex justify-center items-center w-[144px] h-full">
-        <img src="/LOGO.png" className="w-[140px] h-full" />
-      </div>
-      <div className="flex justify-center items-center ml-[50px] h-full">|</div>
-      <div className="flex justify-center items-center ml-[50px] h-full">
-        All right reserved. Copyright @imagify
-      </div>
-      <div className="flex justify-center items-center h-full gap-3 ml-[860px]">
-        <CiFacebook className="h-[30px] w-[30px]  rounded-full  hover:cursor-pointer hover:scale-110 transition-all duration-300"/>
-        <CiInstagram className="h-[30px] w-[30px]  rounded-full  hover:cursor-pointer hover:scale-110 transition-all duration-300"/>
-        <CiTwitter className="h-[30px] w-[30px]  rounded-full  hover:cursor-pointer hover:scale-110  transition-all duration-300"/>
+    <div className='flex items-center justify-between gap-4 py-3 mt-20'>
+      
+      <img src={assets.logo} alt="" width={150} />
+
+      <p className='flex-1 border-l border-gray-400 pl-4 text-sm text-gray-500 max-sm:hidden'>Copyright @TeamImagify  |  All right reserved.</p>
+
+      <div className='flex gap-2.5'>
+        <img src={assets.facebook_icon} alt="" width={35} />
+        <img src={assets.twitter_icon} alt="" width={35} />
+        <img src={assets.instagram_icon} alt="" width={35} />
       </div>
     </div>
-  );
+  )
 }
+
+export default Footer

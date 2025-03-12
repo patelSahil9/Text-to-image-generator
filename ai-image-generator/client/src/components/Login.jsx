@@ -1,85 +1,125 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './login.css';
+import React, { useContext, useEffect, useState } from 'react'
+import { assets } from '../assets/assets'
+import { AppContext } from '../context/AppContext'
+import { motion } from "motion/react"
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import validator from 'validator'
 
+const Login = () => {
 
-function Login() {
-	useEffect(() => {
-		const signUpButton = document.getElementById('signUp');
-		const signInButton = document.getElementById('signIn');
-		const container = document.getElementById('container');
+    const [state, setState] = useState('Login')
+    const {setShowLogin, backendUrl, setToken, setUser} = useContext(AppContext)
 
-		signUpButton.addEventListener('click', () => {
-			container.classList.add("right-panel-active");
-		});
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    
+    const [errorMessage, setErrorMessage] = useState('') 
+  
+    const validate = (value) => { 
+  
+        if (validator.isStrongPassword(value, { 
+            minLength: 8, minLowercase: 1, 
+            minUppercase: 1, minNumbers: 1, minSymbols: 1 
+        })) { 
+            setErrorMessage('Is Strong Password') 
+        } else { 
+            setErrorMessage('Is Not Strong Password') 
+        }
+    }
 
-		signInButton.addEventListener('click', () => {
-			container.classList.remove("right-panel-active");
-		});
-	}, []);
+    const onSubmitHandler = async (e) =>{
+        e.preventDefault();
 
-	return (
-		<>
-		<div className='h-screen w-screen pt-16 top-0  fixed z-50 bg-white'>
-			{/* <Link to="/">
-				<div className='flex items-center'>
-					<button className="text-x font-bold py-2 px-4 rounded-full bg-gray-500 ml-10 hover:bg-gray-200 transition-all duration-300">&larr; Back</button>
-				</div>
-			</Link> */}
-			<div className="container mt-11" id="container">
-				<div className="form-container sign-up-container">
-					<form action="#">
-						<h1>Create Account</h1>
-						<div className="social-container">
-							<a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-							<a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-							<a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
-						</div>
-						<span>or use your email for registration</span>
-						<input type="text" placeholder="Name" />
-						<input type="email" placeholder="Email" />
-						<input type="password" placeholder="Password" />
-						<button>Sign Up</button>
-					</form>
-				</div>
-				<div className="form-container sign-in-container">
-					<form action="#">
-						<h1>Sign in</h1>
-						<div className="social-container">
-							<a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-							<a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-							<a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
-						</div>
-						<span>or use your account</span>
-						<input type="email" placeholder="Email" />
-						<input type="password" placeholder="Password" />
-						<a href="#">Forgot your password?</a>
-						<button>Sign In</button>
-					</form>
-				</div>
-				<div className="overlay-container">
-					<div className="overlay">
-						<div className="overlay-panel overlay-left">
-							<h1>Welcome Back!</h1>
-							<p>To keep connected with us please login with your personal info</p>
-							<button className="ghost" id="signIn">Sign In</button>
-						</div>
-						<div className="overlay-panel overlay-right">
-							<h1>Hello, Friend!</h1>
-							<p>Enter your personal details and start journey with us</p>
-							<button className="ghost" id="signUp">Sign Up</button>
-						</div>
-					</div>
-				</div>
-			</div>
+        try {
 
-			<footer>
-				<h1 className='text-4xl justify-center text-center mb-10'>SignIn/SignUp</h1>
-			</footer>
-			</div>
-		</>
-	);
+            if(state === 'Login'){
+                const {data} = await axios.post(backendUrl+'/api/user/login', {email, password});
+
+                if (data.success){
+                    setToken(data.token)
+                    setUser(data.user)
+                    localStorage.setItem('token', data.token)
+                    setShowLogin(false)
+
+                }else{
+                    toast.error(data.message)
+                }
+
+            }else{
+                const {data} = await axios.post(backendUrl+'/api/user/register', {name, email, password});
+
+                if (data.success) {
+                    setToken(data.token)
+                    setUser(data.user)
+                    localStorage.setItem('token', data.token)
+                    setShowLogin(false)
+
+                }else{
+                    toast.error(data.message)
+                }
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
+    useEffect(()=>{
+        document.body.style.overflow = 'hidden';
+
+        return()=>{
+            document.body.style.overflow = 'unset';
+        }
+
+    },[])
+
+  return (
+    <div className='fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center'>
+
+        <motion.form onSubmit={onSubmitHandler}
+        initial={{opacity:0.2, y:50}}
+        transition={{duration:0.3}}
+        whileInView={{opacity:1, y:0}}
+        viewport={{once:true}}
+        className='telative bg-white p-10 rounded-xl text-slate-500'>
+            <h1 className='text-center text-2xl text-neutral-700 font-medium'>{state}</h1>
+            <p className='text-sm'>Welcome back! Please sign in to continue</p>
+
+            {state !== 'Login' && <div className='border px-6 py-2 flex items-center gap-2 rounded-full mt-5'>
+                
+                <input onChange={e => setName(e.target.value)} value={name} type="text" className='outline-none text-sm' placeholder='Full Name' required/>
+            </div>}
+
+            <div className='border px-6 py-2 flex items-center gap-2 rounded-full mt-4'>
+                <img src={assets.email_icon} alt="" />
+                <input onChange={e => setEmail(e.target.value)} value={email} type="email" className='outline-none text-sm' placeholder='Email Id' required/>
+            </div>
+
+            <div className='border px-6 py-2 flex items-center gap-2 rounded-full mt-4'>
+                <img src={assets.lock_icon} alt="" />
+                <input onChange={e => {setPassword(e.target.value); validate(e.target.value)}} value={password} type="password" className='outline-none text-sm' placeholder='Password' required/>
+            </div>
+
+            {errorMessage === '' ? null : 
+                    <span style={{ 
+                        fontWeight: 'bold', 
+                        color: 'red', 
+                    }}>{errorMessage}</span>} 
+
+            <p className='text-sm text-blue-600 my-4 cursor-pointer'>Forgot Password?</p>
+
+            <button type='submit' className='bg-blue-600 w-full text-white py-2 rounded-full'>{state === 'Login' ? 'login' : 'create account'}</button>
+
+            {state === 'Login' ? <p className='mt-5 text-center'>Don't have an account? <span className='text-blue-600 cursor-pointer' onClick={()=>setState('Sign Up')}>Sign up</span></p>
+            :
+            <p className='mt-5 text-center'>Already have an account <span className='text-blue-600 cursor-pointer' onClick={()=>setState('Login')}>Login</span></p>}
+
+            <img onClick={()=>setShowLogin(false)} src={assets.cross_icon} alt="" className='absolute top-5 right-5 cursor-pointer'/>
+        </motion.form>
+      
+    </div>
+  )
 }
 
-export default Login;
-
+export default Login
