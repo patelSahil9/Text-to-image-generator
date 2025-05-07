@@ -16,7 +16,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
     "react-toastify": "^11.0.3",
-    "validator": "^13.12.0"
+    "validator": "^13.12.0",
+    "vite"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -30,8 +31,7 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "postcss": "^8.4.49",
-    "rollup": "^3.29.4",
     "tailwindcss": "^3.4.17",
-    "vite": "^6.3.5"
+    "vite": "^6.0.5"
   }
 }
