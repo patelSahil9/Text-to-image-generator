@@ -6,13 +6,9 @@ services:
       context: ./client
       dockerfile: dockerfile
     ports:
-      - "5173:5173"
+      - "3000:3000"
     environment:
-      - VITE_API_URL=http://localhost:5000
-      - HOST=0.0.0.0
-      - PORT=5173
-    networks:
-      - app-network
+      - VITE_API_URL=http://server:5000
     command: npm run dev
 
   server:
@@ -24,12 +20,8 @@ services:
     environment:
       - NODE_ENV=development
       - MONGO_URI=mongodb://mongo:27017/ai_image_generator
-      - HOST=0.0.0.0
-      - PORT=5000
     depends_on:
       - mongo
-    networks:
-      - app-network
     command: npm start
 
   mongo:
@@ -38,12 +30,6 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
 
 volumes:
   mongo-data:
